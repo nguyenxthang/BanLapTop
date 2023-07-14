@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout_user :: areas(~{::main})}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main>
+    <div class="row">
+        <div class="col-sm-3">
+            <h1>Loại Sản Phẩm</h1>
+            <ul>
+
+                <th:block th:each="category : ${categories}">
+                    <li><a style="text-decoration: none;font-size: x-large;color: black "
+                           th:href="@{'/category/' + ${category.id} + '/product'}" th:text="${category.name}"></a></li>
+                </th:block>
+            </ul>
+
+        </div>
+        <div class="col-9">
+            <h1>Danh Sách Sản Phẩm</h1>
+            <div class="product-list">
+                <div class="row  row-cols-md-4  ">
+                    <th:block th:each="product : ${products}">
+                        <a class="col mb-5" style="text-decoration: none"
+                           th:href="@{'/product/detail/' + ${product.id}}">
+                            <div class="card h-100">
+                                <img class="card-img-top" th:src="${product.image}">
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <h5 class="fw-bolder" th:text="${product.name}"></h5>
+                                        <h4 style="color: red" th:text="${product.price}"></h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </a>
+                    </th:block>
+                </div>
+
+            </div>
+</main>
+</body>
+</html>
